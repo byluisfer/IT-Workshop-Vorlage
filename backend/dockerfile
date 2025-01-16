@@ -1,0 +1,18 @@
+# The image
+FROM node:18-alpine
+
+# Create the app directory
+WORKDIR /app
+
+# Copy this files and then npm install
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy the rest
+COPY . .
+
+# The port to run the server
+EXPOSE 5001
+
+# Command to start the server
+CMD ["node", "src/server.js"]
